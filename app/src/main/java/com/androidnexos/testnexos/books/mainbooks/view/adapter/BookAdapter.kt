@@ -9,7 +9,7 @@ import com.androidnexos.testnexos.databinding.ItemBookBinding
 
 class BookAdapter(private val context: Context, private val dataBook: List<Book>):
     RecyclerView.Adapter<BookAdapter.ViewHolderBook>() {
-    
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderBook {
         val itemBookBinding = ItemBookBinding.inflate(LayoutInflater.from(context),

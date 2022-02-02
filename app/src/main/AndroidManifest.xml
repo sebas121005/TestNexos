@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestNexos">
         <activity
-            android:name="com.androidnexos.testnexos.books.mainbooks.view.BookActivity"
+            android:name=".books.detailbooks.view.DetailBookActivity"
+            android:exported="true" />
+        <activity
+            android:name=".books.mainbooks.view.BookActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

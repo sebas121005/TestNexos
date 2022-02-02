@@ -2,6 +2,7 @@ package com.androidnexos.testnexos.books.mainbooks.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidnexos.testnexos.R
@@ -23,6 +24,8 @@ class BookActivity : AppCompatActivity() {
         val view = mBookBinding?.root
         setContentView(view)
         initializeWidgets()
+
+        observables()
     }
 
     private fun initializeWidgets() {
@@ -34,5 +37,15 @@ class BookActivity : AppCompatActivity() {
         }
 
         mViewModel?.getBooks("mongodb")
+    }
+
+    private fun observables() {
+        mViewModel?.showListBooksLiveDate?.observe(this, {
+            it?.let { books ->
+                dataBookList.clear()
+                dataBookList.add(books)
+                mBookAdapter?.notifyDataSetChanged()
+            }
+        })
     }
 }

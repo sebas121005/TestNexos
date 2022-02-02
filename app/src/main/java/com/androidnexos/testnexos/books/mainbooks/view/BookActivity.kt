@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidnexos.testnexos.R
 import com.androidnexos.testnexos.books.mainbooks.model.Book
+import com.androidnexos.testnexos.books.mainbooks.model.ListBooks
 import com.androidnexos.testnexos.books.mainbooks.view.adapter.BookAdapter
 import com.androidnexos.testnexos.books.mainbooks.viewmodel.BookViewModel
 import com.androidnexos.testnexos.databinding.ActivityMainBinding
@@ -41,9 +42,9 @@ class BookActivity : AppCompatActivity() {
 
     private fun observables() {
         mViewModel?.showListBooksLiveDate?.observe(this, {
-            it?.let { books ->
+            it.listBooks.let { books ->
                 dataBookList.clear()
-                dataBookList.add(books)
+                dataBookList.addAll(books)
                 mBookAdapter?.notifyDataSetChanged()
             }
         })

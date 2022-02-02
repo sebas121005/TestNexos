@@ -2,6 +2,8 @@ package com.androidnexos.testnexos.books.mainbooks.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +40,23 @@ class BookActivity : AppCompatActivity() {
         }
 
         mViewModel?.getBooks("mongodb")
+
+        mBookBinding?.searchBooks?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0!!.isNotEmpty()) {
+                    mViewModel?.getBooks(p0.toString())
+                } else {
+                    mViewModel?.getBooks("mongodb")
+                }
+            }
+
+        })
     }
 
     private fun observables() {

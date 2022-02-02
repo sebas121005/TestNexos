@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestNexos">
         <activity
-            android:name=".books.view.BookActivity"
+            android:name="com.androidnexos.testnexos.books.mainbooks.view.BookActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.androidnexos.testnexos.books.view
+package com.androidnexos.testnexos.books.mainbooks.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

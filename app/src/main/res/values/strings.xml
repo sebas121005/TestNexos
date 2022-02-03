@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TestNexos</string>
     <string name="precio">Precio</string>
+    <string name="detalle_libro">Detalle libro</string>
 </resources>

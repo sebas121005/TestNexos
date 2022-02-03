@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.androidnexos.testnexos.books.mainbooks.model.Book
+import com.androidnexos.testnexos.books.mainbooks.viewmodel.BookViewModel
 import com.androidnexos.testnexos.databinding.ItemBookBinding
 
-class BookAdapter(private val context: Context, private val dataBook: List<Book>):
+class BookAdapter(private val context: Context, private val dataBook: List<Book>,
+                private val bookViewModel: BookViewModel?):
     RecyclerView.Adapter<BookAdapter.ViewHolderBook>() {
 
 
@@ -20,6 +22,7 @@ class BookAdapter(private val context: Context, private val dataBook: List<Book>
 
     override fun onBindViewHolder(holder: ViewHolderBook, position: Int) {
         holder.addItemMovie(dataBook[position])
+        holder.onClickDetailMovie(dataBook[position], bookViewModel)
     }
 
     override fun getItemCount(): Int {
@@ -32,6 +35,12 @@ class BookAdapter(private val context: Context, private val dataBook: List<Book>
             itemBookBinding.bookName.text = book.tittleBook
             itemBookBinding.subtitleBook.text = book.subtitleBook
             itemBookBinding.priceBook.text = book.priceBook
+        }
+
+        fun onClickDetailMovie(book: Book, bookViewModel: BookViewModel?) {
+            itemBookBinding.seeDetail.setOnClickListener {
+                bookViewModel?.showDetailBookLiveData?.value = book
+            }
         }
     }
 }

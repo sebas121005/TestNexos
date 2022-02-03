@@ -15,6 +15,7 @@ class BookViewModel: ViewModel() {
     private val mBookRepository = BookRepository()
 
     val showListBooksLiveDate = MutableLiveData<ListBooks>()
+    val showDetailBookLiveData = MutableLiveData<Book>()
 
     fun getBooks(tittle: String) {
         viewModelScope.launch {

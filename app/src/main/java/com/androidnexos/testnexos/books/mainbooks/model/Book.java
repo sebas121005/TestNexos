@@ -15,4 +15,8 @@ public class Book {
     @SerializedName("price")
     @Expose
     public String priceBook;
+
+    @SerializedName("image")
+    @Expose
+    public String imageBook;
 }

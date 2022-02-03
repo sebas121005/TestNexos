@@ -1,5 +1,6 @@
 package com.androidnexos.testnexos.books.mainbooks.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -8,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidnexos.testnexos.R
+import com.androidnexos.testnexos.books.detailbooks.view.DetailBookActivity
+import com.androidnexos.testnexos.books.detailbooks.viewmodel.DetailBookViewModel
 import com.androidnexos.testnexos.books.mainbooks.model.Book
 import com.androidnexos.testnexos.books.mainbooks.model.ListBooks
 import com.androidnexos.testnexos.books.mainbooks.view.adapter.BookAdapter
@@ -33,7 +36,7 @@ class BookActivity : AppCompatActivity() {
 
     private fun initializeWidgets() {
         mViewModel = ViewModelProvider(this)[BookViewModel::class.java]
-        mBookAdapter = BookAdapter(this, dataBookList)
+        mBookAdapter = BookAdapter(this, dataBookList, mViewModel)
         with(mBookBinding?.listBooks) {
             this?.layoutManager = LinearLayoutManager(this@BookActivity)
             this?.adapter = mBookAdapter
@@ -66,6 +69,15 @@ class BookActivity : AppCompatActivity() {
                 dataBookList.addAll(books)
                 mBookAdapter?.notifyDataSetChanged()
             }
+        })
+
+        mViewModel?.showDetailBookLiveData?.observe(this, {
+            val intentDetail = Intent(this, DetailBookActivity::class.java)
+            intentDetail.putExtra(DetailBookViewModel.TITTLE_BOOK, it.tittleBook)
+            intentDetail.putExtra(DetailBookViewModel.SUBTITLE_BOOK, it.subtitleBook)
+            intentDetail.putExtra(DetailBookViewModel.PRICE_BOOK, it.priceBook)
+            intentDetail.putExtra(DetailBookViewModel.IMAGE_BOOK, it.imageBook)
+            startActivity(intentDetail)
         })
     }
 }
